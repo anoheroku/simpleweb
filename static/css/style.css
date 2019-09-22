@@ -1,0 +1,110 @@
+body {
+    background-color: #f8f8f8;
+    font-size: 100%;
+    width: 90%;
+    margin: 5px auto;
+}
+
+a.menu:link, a.menu:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+a.menu:hover, a.menu:active {
+    background-color: red;
+    color:lightgray;
+}
+ul.menu {
+    margin: 2px auto;
+    padding: 2px; 
+}
+ul.menu li {
+    display: inline-block;
+    list-style-type: none;
+    text-align: center;    
+}
+
+h2.item {
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #eaeaea;
+}
+img.item {
+    border: 4px solid #f44336;
+    border-radius: 10px;
+    padding: 1px;
+}
+img.item:hover {
+    border: none;
+    margin: 4px;
+}
+img.catalog {
+    width: 200px;
+}
+
+img.menu {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+
+.rTable {
+    display: block;
+    width: 100%;
+}
+
+.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+    clear: both;
+}
+
+.rTableHeading{
+    text-align: left;
+}
+
+.rTableHead, .rTableFoot{
+    background-color: #DDD;
+    font-weight: bold;
+}
+
+.rTableCell, .rTableHead {
+    border: 1px solid #999999;
+    float: left;
+    height: 17px;
+    overflow: hidden;
+    padding: 3px 1.8%;
+    width: 28%;
+}
+
+.rTable:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}

@@ -1,0 +1,10 @@
+{%  extends 'simpleweb/base.html' %}
+{% load staticfiles %}
+
+{% block base_title %}
+    Вебсайт - Вход
+{% endblock %}
+
+{% block base_content %}
+    {% include 'simpleweb/form.html' with form=form %}
+{%  endblock %}

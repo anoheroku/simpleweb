@@ -1,0 +1,61 @@
+div.radio-button {
+    margin:4px auto;
+    display: block;
+}
+
+#content {
+    text-align: center;
+}
+
+.radio-button label {
+    width: 240px;
+    display: block;
+    margin:4px auto;
+    background-color:#EFEFEF;
+    border-radius:4px;
+    border:1px solid #D0D0D0;
+}
+
+.radio-button label span {
+    text-align:center;
+    font-size: 16px;
+    font-weight: bold;
+    color: lightgray;
+    padding:13px 0px;
+    display:block;
+}
+
+.radio-button label input {
+    position:absolute;
+    top:-20px;
+}
+
+.radio-button input:checked + span {
+    background-color:#404040;
+    color:#F7F7F7;
+}
+
+.radio-button .red {
+    background-color:red;
+    color:#333;
+}
+
+h3 {
+    background-color: #DDDDDD;
+    padding: 10px;
+}
+
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+.red {
+    color: red;
+}
+
+.roadmap-submit-button {
+    margin: 5px auto;
+    display: block;
+}

@@ -1,0 +1,32 @@
+{% load static %}
+
+<a href="{% url 'webapp:root' %}"><img class="menu" src="{% static 'images/head.jpg' %}" alt="Header image"></a>
+
+<ul class="menu">
+    <li><a class="menu" href="{% url 'webapp:employees' %}">Сотрудники</a></li>
+    <li><a class="menu" href="{% url 'webapp:equipment' %}">Оборудование</a></li>
+    <li><a class="menu" href="{% url 'webapp:operations' %}">Операции</a></li>
+    <li><a class="menu" href="{% url 'webapp:roadmap' %}">Маршрутная карта</a></li>
+    {% if user.is_authenticated %}
+    <li>
+
+            {% if user.is_staff %}
+                <a class="menu" href="{% url 'admin:index' %}">Админка</a>
+            {% else %}
+                {{ user.name|title }}
+            {% endif %}
+        </a>
+    </li>
+    <li>
+        <a class="menu" href="{% url 'authapp:logout' %}">Выйти</a>
+    </li>
+    {% else %}
+    <li>
+        <a class="menu" href="{% url 'authapp:login' %}">Войти</a>
+    </li>
+    {% endif %}
+    </li>
+</ul>
+<hr>
+<span>{% now 'F j, Y H:i' %}</span>
+<hr>

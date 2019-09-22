@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Вебсайт - {% block base_title %}{{ title|title }}{% endblock %}
+    </title>
+    {% block base_css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+    {% block base_js %}{% endblock %}
+</head>
+<body>
+<header>
+    {% block base_header %}
+        {% include 'simpleweb/includes/inc_main_menu.html' %}
+    {% endblock %}
+    <ul class="publishers-menu">
+
+    </ul>
+</header>
+
+<div id="content">
+    {% block base_content %}
+    {% endblock %}
+</div>
+
+<footer>
+    {% block base_footer %}
+    <hr>
+    <p>&copy;&nbsp;2019&nbsp;Все права защищены</p>
+    {% endblock %}
+</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'simpleweb/base.html' %}
+
+{% load static %}
+
+{% block base_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block base_content %}
+<div class="rTable">
+    <div class="rTableHeading">
+        <b>Операции</b>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableHead">Номер</div>
+        <div class="rTableHead">Название</div>
+    </div>
+     {% for operation in object_list %}
+    <div class="rTableRow">
+        <div class="rTableCell">
+            {{ operation.number }}
+        </div>
+        <div class="rTableCell">
+            {{ operation.title }}
+        </div>
+    </div>
+    {% endfor %}
+</div><br>
+{% endblock %}

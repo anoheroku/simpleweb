@@ -1,0 +1,30 @@
+{% extends 'simpleweb/base.html' %}
+
+{% load static %}
+
+{% block base_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block base_content %}
+
+<div class="rTable">
+    <div class="rTableHeading">
+        <b>Оборудование</b>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableHead">Наименование</div>
+        <div class="rTableHead">Количество</div>
+    </div>
+    {% for equipment in object_list %}
+        <div class="rTableRow">
+        <div class="rTableCell">
+            {{ equipment.name }}
+        </div>
+        <div class="rTableCell">
+            {{ equipment.amount}}
+        </div>
+    </div>
+{% endfor %}
+</div><br>
+{% endblock %}

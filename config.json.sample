@@ -1,0 +1,7 @@
+{
+    "SUPERUSER_NAME": "django",
+    "SUPERUSER_WORD": "djangoword",
+    "SUPERUSER_MAIL": "example@example.com",
+    "SECRET_KEY": "very_secret_key",
+    "DEBUG": true
+}

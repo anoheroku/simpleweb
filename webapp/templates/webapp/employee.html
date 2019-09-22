@@ -1,0 +1,33 @@
+{% extends 'simpleweb/base.html' %}
+
+{% load static %}
+
+{% block base_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block base_content %}
+<div class="rTable">
+    <div class="rTableHeading">
+        <b>Сотрудники</b>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableHead">Имя</div>
+        <div class="rTableHead">Должность</div>
+        <div class="rTableHead">Телефон</div>
+    </div>
+    {% for employee in object_list %}
+    <div class="rTableRow">
+        <div class="rTableCell">
+            {{ employee.name|title }}
+        </div>
+        <div class="rTableCell">
+            {{ employee.title }}
+        </div>
+        <div class="rTableCell">
+            {{ employee.number }}
+        </div>
+    </div>
+    {% endfor %}
+</div><br>
+{% endblock %}

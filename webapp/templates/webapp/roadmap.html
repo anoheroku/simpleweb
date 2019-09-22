@@ -1,0 +1,140 @@
+{% extends 'simpleweb/base.html' %}
+
+{% load static %}
+
+{% block base_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/roadmap.css' %}">
+{% endblock %}
+    {% block base_js %}
+        <script>
+        function do_submit(op_num, last_one=0) {
+            let total_sec = parseInt(document.getElementById("totaltimecell").innerText);
+            let op_div = document.getElementById("op" + op_num + "div");
+            let op_yes = document.getElementById("op" + op_num + "yes");
+            let op_no = document.getElementById("op" + op_num + "no");
+            let op_sec = document.getElementById("op" + op_num + "sec");
+            let op_name = document.getElementById("op" + op_num + "name");
+            let elements = document.getElementsByClassName("operation");
+            let error = 0;
+            let last_row = document.getElementById("lastrow");
+            document.getElementById("errorMessage").innerText = "";
+            document.getElementById("errorMessage").classList.remove("show");
+            document.getElementById("errorMessage").classList.add("hide");
+
+            if (op_yes.checked || op_no.checked) {} else {
+                document.getElementById("errorMessage").innerText = "Надо выбрать ДА или НЕТ";
+                error = 1;
+            }
+            console.warn(error);
+            console.warn(op_sec.value);
+            if (op_sec.value > 0 || op_no.checked) {} else {
+                if (error > 0) {
+                    document.getElementById("errorMessage").innerHTML += "<br>Укажите количество секунд!";
+                } else {
+                    document.getElementById("errorMessage").innerText = "Укажите количество секунд!";
+                }
+                error = 1;
+            }
+
+            if (error > 0) {
+                document.getElementById("errorMessage").classList.remove("hide");
+                document.getElementById("errorMessage").classList.add("show");
+                return
+            }
+
+            console.warn("op_yes " + op_yes.checked);
+            if (op_yes.checked) {
+                let html_row = "<div class=\"rTableRow\">\n" +
+                    "            <div class=\"rTableCell\">" + op_num + "</div>\n" +
+                    "            <div class=\"rTableCell\">" + op_name.innerText + "</div>\n" +
+                    "            <div class=\"rTableCell\">" + op_sec.value + "</div>\n" +
+                    "        </div>";
+                last_row.insertAdjacentHTML('beforebegin', html_row);
+                total_sec += parseInt(op_sec.value);
+                console.warn(total_sec)
+                document.getElementById("totaltimecell").innerText = total_sec.toString() + " сек";
+            }
+
+            op_div.classList.remove("show");
+            op_div.classList.add("hide");
+
+            if (last_one === 1) {
+                document.getElementById("dialog").classList.add("hide");
+                document.getElementById("resultTable").classList.remove("hide");
+                document.getElementById("resultTable").classList.remove("show");
+            } else {
+                for (let i = 0; i < elements.length; i++) {
+                    if (elements[i].id === op_div.id) {
+                       elements[i+1].classList.remove("hide");
+                       elements[i+1].classList.add("show");
+                    }
+                }
+            }
+        }
+        function print_element(elem)
+{
+    let mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<link rel="stylesheet" href="{% static 'css/style.css' %}">');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.onload(null);
+    mywindow.print();
+    {#mywindow.close();#}
+
+    return true;
+}
+        </script>
+    {% endblock %}
+{% block base_content %}
+    <div id="resultTable" class="rTable hide">
+        <div class="rTableHeading">
+            <b>Операции</b>
+        </div>
+        <div class="rTableRow" id="tabletitles">
+            <div class="rTableHead">Номер</div>
+            <div class="rTableHead">Название</div>
+            <div class="rTableHead">Время</div>
+        </div>
+
+        <div class="rTableRow" id="lastrow">
+            <div class="rTableCell">&nbsp;</div>
+            <div class="rTableCell"><b>Всего:</b></div>
+            <div class="rTableCell" id="totaltimecell">0 сек</div>
+        </div>
+
+
+            <button onclick="print_element('resultTable')">Напечатать</button>
+
+
+    </div>
+    <div id="dialog">
+        <h3>Диалог с пользователем</h3>
+        <p id="errorMessage" class="hide red"></p>
+        {%  for operation in operations %}
+        <div id="op{{ operation.number }}div" {% if forloop.first %} class="operation show" {% else %} class="operation hide" {% endif %}>
+            <h4>Будем делать: {{ operation.title }}?</h4>
+            <p class="hide" id="op{{ operation.number }}name">{{ operation.title }}</p>
+            <div class="radio-button">
+                <label class="red"><input id="op{{ operation.number }}yes" type="radio" name="toggle"><span>да</span></label>
+                <label class="red"><input id="op{{ operation.number }}no" type="radio" name="toggle"><span>нет</span></label>
+            </div>
+            <h4>Сколько времени будем делать?</h4>&nbsp;
+            <label><input id="op{{ operation.number }}sec" type="text"> сек</label><br>
+            {% if forloop.last %}
+            <button class="roadmap-submit-button" onclick="do_submit({{ operation.number }}, 1)">Сохранить</button>
+            {% else %}
+            <button class="roadmap-submit-button" onclick="do_submit({{ operation.number }}, 0)">Сохранить</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
