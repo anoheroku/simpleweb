@@ -17,7 +17,11 @@
 
 Установить необходимые модули python:
 
->pip install -r requirements.txt</code>
+>pip install -r requirements.txt
+
+Создать файл настроек config.json (можно копировать config.json.sample):
+
+>cp config.json.sample config.json
 
 Добавить суперпользователя в БД
 
